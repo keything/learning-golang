@@ -1,0 +1,1 @@
+GOGC=off go test -cpu 8 -run none -bench . -benchmem -benchtime 3s
