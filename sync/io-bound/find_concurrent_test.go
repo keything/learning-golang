@@ -155,7 +155,7 @@ func TestSucceed(t *testing.T) {
 }
 func BenchmarkSequential(b *testing.B) {
 	genFilesNum := 10000
-	docsNums := 2000
+	docsNums := 200
 	docs := make([]string, docsNums)
 	for i := 0; i < b.N; i++ {
 		find("4", docs, genFilesNum)
@@ -164,7 +164,7 @@ func BenchmarkSequential(b *testing.B) {
 
 func BenchmarkConcurrent(b *testing.B) {
 	genFilesNum := 10000
-	docsNums := 2000
+	docsNums := 200
 	docs := make([]string, docsNums)
 	for i := 0; i < b.N; i++ {
 		findConcurrent("4", docs, genFilesNum)
@@ -172,7 +172,7 @@ func BenchmarkConcurrent(b *testing.B) {
 }
 func BenchmarkConcurrentEqualToGpu(b *testing.B) {
 	genFilesNum := 10000
-	docsNums := 2000
+	docsNums := 200
 	docs := make([]string, docsNums)
 	for i := 0; i < b.N; i++ {
 		findConcurrentEqualToCpu("4", docs, genFilesNum, runtime.NumCPU())
