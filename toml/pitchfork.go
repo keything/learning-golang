@@ -36,22 +36,21 @@ func (d *myduration) UnmarshalText(text []byte) error {
 	return err
 }
 
-func NewConfig(path string) (MyConfig, error) {
+func NewConfig(path string) (c *MyConfig, err error) {
 	var (
 		openFile *os.File
-		err      error
 		blob     []byte
-		conf     MyConfig
 	)
 	if openFile, err = os.Open(path); err != nil {
-		return MyConfig{}, err
+		return nil, err
 	}
 	if blob, err = ioutil.ReadAll(openFile); err != nil {
-		return MyConfig{}, err
+		return nil, err
 	}
-	if _, err := toml.Decode(string(blob), &conf); err != nil {
-		return MyConfig{}, err
+	c = new(MyConfig)
+	if _, err := toml.Decode(string(blob), c); err != nil {
+		return nil, err
 	}
-	return conf, nil
+	return c, nil
 
 }

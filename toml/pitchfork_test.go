@@ -7,7 +7,7 @@ import (
 
 func TestNewConfig(t *testing.T) {
 	var (
-		conf MyConfig
+		conf *MyConfig
 		err  error
 	)
 
